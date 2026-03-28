@@ -1,0 +1,96 @@
+.page {
+  height: 100vh;
+  overflow: hidden;
+  background: #f6f6f6;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.header {
+  padding: 26px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 26px 30px;
+  height: 105px;
+  background: #ffffff;
+  border-radius: 10px;
+  margin: 0 30px;
+}
+
+.title {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 45px;
+  color: #202020;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.searchWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 1023px;
+  margin: 0 auto;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  margin: 0 30px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #333333;
+  margin: 0;
+}
+
+.toolbarActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  gap: 15px;
+  height: 42px;
+  min-height: 42px;
+  background: #242edb !important;
+  border-radius: 6px !important;
+  border: none !important;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 26px;
+  color: #ebf3ea;
+}
