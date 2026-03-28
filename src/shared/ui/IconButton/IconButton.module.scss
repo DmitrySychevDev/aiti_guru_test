@@ -1,0 +1,30 @@
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.outlined {
+  background: #ffffff;
+  border: 1px solid #ececeb;
+  border-radius: 8px;
+
+  &:hover {
+    border-color: #d9d9d9;
+  }
+}
+
+.ghost {
+  border: none;
+  background: transparent;
+}
