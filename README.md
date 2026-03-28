@@ -1,73 +1,100 @@
-# React + TypeScript + Vite
+# Тестовое задание — Айти Гуру
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Административная панель управления товарами. React 18 + TypeScript, архитектура FSD.
 
-Currently, two official plugins are available:
+## Стек
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 18** + **TypeScript** (strict)
+- **Vite** — сборка
+- **Ant Design 5** — UI компоненты (обёрнуты в `shared/ui` для замены вендора)
+- **TanStack Query v5** — запросы и кэш
+- **Zustand** — стейт авторизации
+- **React Router v6** — роутинг
+- **Axios** — HTTP клиент
+- **SCSS Modules** — стилизация
+- **FSD** — Feature-Sliced Design архитектура
 
-## React Compiler
+## Быстрый старт
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Установить зависимости
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Настроить переменные окружения
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Скопировать `.env.example` в `.env`:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cp .env.example .env
 ```
+
+### 3. Запустить dev-сервер
+
+```bash
+npm run dev
+```
+
+Приложение откроется на [http://localhost:5173](http://localhost:5173)
+
+### 4. Сборка для продакшена
+
+```bash
+npm run build
+```
+
+## Переменные окружения
+
+| Переменная | Описание | Пример |
+|---|---|---|
+| `VITE_API_BASE_URL` | Базовый URL API | `https://dummyjson.com` |
+
+> Файлы `.env`, `.env.production` и `.env.*.local` добавлены в `.gitignore` и не попадают в репозиторий. В git хранится только `.env.example` — шаблон без секретных значений.
+
+### Как подставить env в разных окружениях
+
+**Локально** — скопировать `.env.example` в `.env` и заполнить значения.
+
+**Vercel / Netlify** — добавить переменные в настройках проекта в разделе Environment Variables.
+
+**GitHub Actions:**
+```yaml
+- name: Build
+  env:
+    VITE_API_BASE_URL: ${{ secrets.API_BASE_URL }}
+  run: npm run build
+```
+
+**Docker:**
+```bash
+docker run -e VITE_API_BASE_URL=https://dummyjson.com my-app
+```
+
+## Авторизация
+
+Для входа используются тестовые credentials от [DummyJSON](https://dummyjson.com/docs/auth):
+
+```
+username: emilys
+password: emilyspass
+```
+
+- **Запомнить данные** ✅ — токен в `localStorage`, сессия живёт после закрытия браузера
+- **Запомнить данные** ☐ — токен в `sessionStorage`, сброс при закрытии вкладки
+
+## Структура проекта (FSD)
+
+```
+src/
+├── app/          # Провайдеры, роутер, точка входа
+├── pages/        # Страницы: /login, /products
+├── widgets/      # Самодостаточные блоки: таблица товаров, модалка добавления
+├── features/     # Фичи: форма входа, поиск товаров
+├── entities/     # Бизнес-сущности: user (auth), product
+└── shared/       # Переиспользуемое: UI обёртки, API клиент, утилиты
+```
+
+## Используемый ИИ
+
+При выполнении задания использовался **Claude Sonnet 4.6** (Anthropic).
